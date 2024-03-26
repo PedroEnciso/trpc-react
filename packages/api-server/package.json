@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node-dev --respawn -r tsconfig-paths/register --watch ./ src/index.ts"
+    "start": "ts-node-dev --respawn -r tsconfig-paths/register --ignore-watch src/__temp__ --watch ./ src/index.ts"
   },
   "main": "index.ts",
   "dependencies": {
