@@ -1,6 +1,7 @@
 import { initTRPC } from "@trpc/server";
 import * as trpcExpress from "@trpc/server/adapters/express";
 import { z } from "zod";
+import { File } from "buffer";
 
 // created for each request
 export const createContext = ({
@@ -19,6 +20,19 @@ export const appRouter = t.router({
     .input(z.object({ name: z.string() }))
     .mutation((opts) => {
       return `Hi ${opts.input.name}`;
+    }),
+  uploadResources: t.procedure
+    .input(
+      z.array(
+        z.object({
+          fileName: z.string(),
+          displayName: z.string(),
+          file: z.custom<File>(),
+        })
+      )
+    )
+    .mutation((opts) => {
+      console.log("fileList", opts.input);
     }),
 });
 
